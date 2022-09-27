@@ -9,14 +9,15 @@ $no_telpon_lainnya = $_POST['no_telpon_lainnya'];
 $jam = $_POST['jam'];
 $tanggal = $_POST['tanggal'];
 $alamat = $_POST['alamat'];
+$provinsi = $_POST['provinsi'];
 $kota = $_POST['kota'];
 $kecamatan = $_POST['kecamatan'];
 $kelurahan = $_POST['kelurahan'];
 
 $query = "INSERT INTO `tb_pengajuans` (`nama_lengkap`, `nomor_telpon1`, `nomor_telpon2`, `jam`, `tanggal`,
-                                        `alamat`, `kota`, `kecamatan`, `kelurahan`)
+                                        `alamat`, `provinsi`, `kota`, `kecamatan`, `kelurahan`)
             VALUES ('$nama_lengkap', '$no_telpon_3g', '$no_telpon_lainnya', '$jam', '$tanggal', '$alamat',
-                    '$kota', '$kecamatan', '$kelurahan');";
+                    '$provinsi', '$kota', '$kecamatan', '$kelurahan');";
 
 if (mysqli_query($conn, $query)) {
 ?>

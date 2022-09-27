@@ -66,15 +66,27 @@ require_once 'koneksi.php';
                     <input type="text" name="alamat" id="alamat" placeholder="Alamat Lengkap" required="">
                 </div>
                 <div class="kota">
+                    <label class="head">Provinsi<span class="w3l-star"> * </span></label>
+                    <select class="form-control" name="provinsi" id="provinsi" required="">
+                        <option>- PILIH -</option>
+                        <?php
+                        $provinsi = mysqli_query($conn, "SELECT * FROM tb_teritori_tap GROUP BY provinsi");
+                        while ($row = mysqli_fetch_assoc($provinsi)) {
+                            echo "<option value='$row[provinsi]'>$row[provinsi]</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="kota">
                     <label class="head">Kota/Kabupaten<span class="w3l-star"> * </span></label>
                     <select class="form-control" name="kota" id="kota" required="">
                         <option>- PILIH -</option>
 
                         <?php
-                        $kota = mysqli_query($conn, "SELECT * FROM tb_teritori_tap GROUP BY kabupaten");
-                        while ($row = mysqli_fetch_assoc($kota)) {
-                            echo "<option value='$row[kabupaten]'>$row[kabupaten]</option>";
-                        }
+                        // $kota = mysqli_query($conn, "SELECT * FROM tb_teritori_tap GROUP BY kabupaten");
+                        // while ($row = mysqli_fetch_assoc($kota)) {
+                        //     echo "<option value='$row[kabupaten]'>$row[kabupaten]</option>";
+                        // }
                         ?>
                     </select>
                 </div>
@@ -143,6 +155,18 @@ require_once 'koneksi.php';
     </script>
 
     <script type="text/javascript">
+        $('#provinsi').change(function() {
+            var provinsi = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: 'kota.php',
+                data: 'provinsi=' + provinsi,
+                success: function(response) {
+                    $('#kota').html(response);
+                }
+            });
+        });
+
         $('#kota').change(function() {
             var kabupaten = $(this).val();
             $.ajax({
