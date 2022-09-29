@@ -3,7 +3,9 @@ include("koneksi.php");
 $provinsi = $_POST['provinsi'];
 $tampil = mysqli_query($conn, "SELECT * FROM tb_teritori_tap WHERE provinsi='$provinsi' GROUP BY kabupaten");
 $jml = mysqli_num_rows($tampil);
-
+?>
+<option value="-"> - PILIH - </option>
+<?php
 if ($jml > 0) {
     while ($r = mysqli_fetch_array($tampil)) {
 ?>

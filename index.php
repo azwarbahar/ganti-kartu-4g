@@ -47,7 +47,7 @@ require_once 'koneksi.php';
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Nomor Telpon<span class="w3l-star"> * </span></label>
-                    <input type="number" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="">
+                    <input type="number" minlength="9" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="p">
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Nomor Telpon Lainnya</label>
