@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Sep 2022 pada 09.19
+-- Waktu pembuatan: 03 Okt 2022 pada 08.38
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.3.33
 
@@ -93,6 +93,36 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_admin`
+--
+
+CREATE TABLE `tb_admin` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `telpon` varchar(255) DEFAULT NULL,
+  `role` varchar(255) DEFAULT NULL,
+  `bagian` varchar(255) DEFAULT NULL,
+  `cluster` varchar(255) DEFAULT NULL,
+  `tap` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_admin`
+--
+
+INSERT INTO `tb_admin` (`id`, `nama`, `username`, `password`, `telpon`, `role`, `bagian`, `cluster`, `tap`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Muhammad Azwar Bahar', 'azwarbahar', '$2y$10$YU4YKY.UKaNLqPBp409Yk.UfNs6DdgN5CAczKzFNLHH6tRKrxiB0S', '082358719404', 'Super', 'SBP', 'GOWA', NULL, 'Active', '2022-09-29 04:10:13', '2022-09-29 04:10:13'),
+(3, 'Acca bahar', 'accabahar', '$2y$10$IlZFfO6uyIoy1CUm9/Do/.jdztRTYlpxMPmYH3s6PYr6XEHMAPYlO', '081234567890', 'Admin', 'SBP', 'GOWA', 'TAP GOWA', 'Active', '2022-09-29 05:38:25', '2022-09-29 05:38:25'),
+(7, 'Admin Super', 'adminsuper', '$2y$10$ihE.yPY0v2ckQQImzQpkzuII9WragtftMX0dz8e3Ox4n1yelszPDG', '081234567890', 'Super', 'CSO', 'GOWA', NULL, 'Active', '2022-10-03 06:31:02', '2022-10-03 06:31:02');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_pengajuans`
 --
 
@@ -108,6 +138,13 @@ CREATE TABLE `tb_pengajuans` (
   `kota` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kecamatan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kelurahan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cluster` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tap` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fullup` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'Belum',
+  `terkirim` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'Belum',
+  `pengirim_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_pengirim` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_hp_pengirim` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -116,16 +153,34 @@ CREATE TABLE `tb_pengajuans` (
 -- Dumping data untuk tabel `tb_pengajuans`
 --
 
-INSERT INTO `tb_pengajuans` (`id`, `nama_lengkap`, `nomor_telpon1`, `nomor_telpon2`, `jam`, `tanggal`, `alamat`, `provinsi`, `kota`, `kecamatan`, `kelurahan`, `created_at`, `updated_at`) VALUES
-(1, 'eghj', '4567', '6789', '10:40', '2022-09-30', 'tyui', 'SULAWESI SELATAN\n', 'GOWA', 'SOMBA OPU', 'TOMBOLO', NULL, NULL),
-(2, 'Muhammad Azwar Bahar', '082358719404', '082394865570', '02:20', '2022-09-29', 'Jalan Mamoa baru no 1', 'SULAWESI SELATAN\n', 'GOWA', 'SOMBA OPU', 'SUNGGUMINASA', NULL, NULL),
-(3, 'Azwar', '082358719646', '97979', '04:42', '2022-09-29', 'Hsjssj', 'SULAWESI SELATAN\n', 'JENEPONTO', 'RUMBIA', 'LEBANG MANAI UTARA', NULL, NULL),
-(4, 'Ggfdc', '59955', '5599', '05:44', '2022-09-30', 'SD Hjhffbb', 'SULAWESI SELATAN\n', 'GOWA', 'BONTONOMPO', 'BONTONOMPO', '2022-09-26 02:44:46', '2022-09-26 02:44:46'),
-(5, 'fdsdf', '45678', '', '10:58', '2022-09-28', 'dfghgjkh', 'SULAWESI SELATAN\n', 'GOWA', 'SOMBA OPU', 'SUNGGUMINASA', '2022-09-26 02:57:14', '2022-09-26 02:57:14'),
-(6, 'Kdkdkd', '34386864', '346768', '03:14', '2022-09-28', 'Jalan Mamoa baru no 1', 'SULAWESI SELATAN\n', 'GOWA', 'BONTONOMPO', 'BULOGADING', '2022-09-26 06:15:12', '2022-09-26 06:15:12'),
-(7, 'fgg', '45456', '765', '11:28', '2022-09-29', 'ferfer', 'SULAWESI SELATAN\n', 'GOWA', 'PATTALLASSANG', 'SUNGGUMANAI', '2022-09-27 03:24:42', '2022-09-27 03:24:42'),
-(8, 'Muhammad Azwar Bahar', '082358719404', '082394865570', '09:30', '2022-09-29', 'Jalan', 'SULAWESI SELATAN\n', 'GOWA', 'SOMBA OPU', 'SUNGGUMINASA', '2022-09-27 03:32:12', '2022-09-27 03:32:12'),
-(9, 'fffff', '34343', '6565', '14:05', '2022-09-30', 'Jalan Mamo Baru No 1', 'SULAWESI SELATAN', 'GOWA', 'SOMBA OPU', 'SUNGGUMINASA', '2022-09-27 06:04:06', '2022-09-27 06:04:06');
+INSERT INTO `tb_pengajuans` (`id`, `nama_lengkap`, `nomor_telpon1`, `nomor_telpon2`, `jam`, `tanggal`, `alamat`, `provinsi`, `kota`, `kecamatan`, `kelurahan`, `cluster`, `tap`, `fullup`, `terkirim`, `pengirim_id`, `nama_pengirim`, `no_hp_pengirim`, `created_at`, `updated_at`) VALUES
+(1, 'Muhammad Azwar Bahar', '082358719404', '082358719404', '09:00', '2022-10-05', 'Jalan Mamoa baru no 1', 'SULAWESI SELATAN', 'GOWA', 'TINGGIMONCONG', 'MALINO', 'GOWA', 'TAP MALINO', 'Belum', 'Belum', NULL, NULL, NULL, '2022-10-03 06:22:02', '2022-10-03 06:22:02'),
+(2, 'Acca Bahar', '08123456789', '08123456789', '19:15', '2022-10-05', 'Jalan Manuruki 2', 'SULAWESI SELATAN', 'GOWA', 'SOMBA OPU', 'KALEGOWA', 'GOWA', 'TAP GOWA', 'Sudah', 'Sudah', '2', 'Muhamamd Azwar Bahar', '1234567890', '2022-10-03 06:24:30', '2022-10-03 06:24:30'),
+(3, 'Qwerty', '0831313131', '0831313131', '11:26', '2022-10-07', 'Jalan qwerty no 1', 'SULAWESI SELATAN', 'GOWA', 'PALLANGGA', 'TETEBATU', 'GOWA', 'TAP GOWA', 'Sudah', 'Sudah', '2', 'Muhamamd Azwar Bahar', '1234567890', '2022-10-03 06:27:18', '2022-10-03 06:27:18');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_pengirim`
+--
+
+CREATE TABLE `tb_pengirim` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `no_hp` varchar(255) DEFAULT NULL,
+  `divisi` varchar(255) DEFAULT NULL,
+  `tap` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_pengirim`
+--
+
+INSERT INTO `tb_pengirim` (`id`, `nama`, `no_hp`, `divisi`, `tap`) VALUES
+(2, 'Muhamamd Azwar Bahar', '1234567890', 'Sales', 'TAP GOWA'),
+(3, 'Acca Bahar', '097654123456', 'Manager', 'TAP MALINO'),
+(4, 'Testing lagi', '098765432', 'HRD', 'TAP TAKALAR'),
+(5, 'Uji Coba', '34565432345', 'Keamanan', 'TAP JENEPONTO');
 
 -- --------------------------------------------------------
 
@@ -580,9 +635,21 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indeks untuk tabel `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `tb_pengajuans`
 --
 ALTER TABLE `tb_pengajuans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tb_pengirim`
+--
+ALTER TABLE `tb_pengirim`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -615,10 +682,22 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_pengajuans`
 --
 ALTER TABLE `tb_pengajuans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pengirim`
+--
+ALTER TABLE `tb_pengirim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
