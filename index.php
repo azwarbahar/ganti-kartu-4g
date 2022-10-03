@@ -43,17 +43,17 @@ require_once 'koneksi.php';
             <form action="#" method="POST" name="form_pengajuan" id="form_pengajuan">
                 <div class="w3l-user">
                     <label class="head">Nama Lengkap<span class="w3l-star"> * </span></label>
-                    <input type="text" style="border-radius: 6px ;" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" required="">
+                    <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" required="">
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Nomor Telpon<span class="w3l-star"> * </span></label>
-                    <p id="notif_no_3g" hidden style="color: #000000 ;">Masukkan Minimal 9 Baris</p>
-                    <input type="number" style="border-radius: 6px ;" minlength="9" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="">
+                    <p id="notif_no_3g" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
+                    <input type="number" style="border-radius: 6px ; background-color: #FFFFFF;" minlength="9" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="">
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Nomor Telpon Lainnya</label>
-                    <p id="notif_no_lainnya" hidden style="color: #000000 ;">Masukkan Minimal 9 Baris</p>
-                    <input type="number" style="border-radius: 6px ;" name="no_telpon_lainnya" id="no_telpon_lainnya" placeholder="Nomor Yang Dapat Dihubungi">
+                    <p id="notif_no_lainnya" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
+                    <input type="number" style="border-radius: 6px ; background-color: #FFFFFF;" name="no_telpon_lainnya" id="no_telpon_lainnya" placeholder="Nomor Yang Dapat Dihubungi">
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Jam<span class="w3l-star"> * </span></label>
@@ -61,15 +61,15 @@ require_once 'koneksi.php';
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Tanggal<span class="w3l-star"> * </span></label>
-                    <input type="date" style="border-radius: 6px ;" name="tanggal" id="tanggal" placeholder="Tanggal" required="">
+                    <input type="date" style="border-radius: 6px ; background-color: #FFFFFF;" name="tanggal" id="tanggal" placeholder="Tanggal" required="">
                 </div>
                 <div class="w3l-user">
                     <label class="head">Alamat<span class="w3l-star"> * </span></label>
-                    <input type="text" style="border-radius: 6px ;" name="alamat" id="alamat" placeholder="Alamat Lengkap" required="">
+                    <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="alamat" id="alamat" placeholder="Alamat Lengkap" required="">
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Provinsi<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ;" name="provinsi" id="provinsi" required="">
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="provinsi" id="provinsi" required="">
                         <option>- PILIH -</option>
                         <?php
                         $provinsi = mysqli_query($conn, "SELECT * FROM tb_teritori_tap GROUP BY provinsi");
@@ -81,7 +81,7 @@ require_once 'koneksi.php';
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Kota/Kabupaten<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ;" name="kota" id="kota" required="">
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="kota" id="kota" required="">
                         <option>- PILIH -</option>
 
                         <?php
@@ -94,14 +94,14 @@ require_once 'koneksi.php';
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Kecamatan<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ;" name="kecamatan" id="kecamatan" required>
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="kecamatan" id="kecamatan" required>
                         <option>- PILIH -</option>
 
                     </select>
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Kelurahan<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ;" name="kelurahan" id="kelurahan" required>
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="kelurahan" id="kelurahan" required>
                         <option>- PILIH -</option>
 
                     </select>
