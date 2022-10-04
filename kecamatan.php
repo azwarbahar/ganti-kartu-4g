@@ -5,7 +5,7 @@ $tampil = mysqli_query($conn, "SELECT * FROM tb_teritori_tap WHERE kabupaten='$k
 $jml = mysqli_num_rows($tampil);
 
 ?>
-<option value="-"> - PILIH - </option>
+<option value="" disabled selected> - PILIH - </option>
 <?php
 
 if ($jml > 0) {

@@ -45,23 +45,23 @@ require_once 'koneksi.php';
                     <label class="head">Nama Lengkap<span class="w3l-star"> * </span></label>
                     <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" required="">
                 </div>
-                <div class="w3l-mail">
+                <div class="w3l-mail" id="continer_no_3g">
                     <label class="head">Nomor Telpon<span class="w3l-star"> * </span></label>
                     <p id="notif_no_3g" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
                     <input type="number" style="border-radius: 6px ; background-color: #FFFFFF;" minlength="9" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="">
                 </div>
-                <div class="w3l-mail">
+                <div class="w3l-mail" id="continer_no_lainnya">
                     <label class="head">Nomor Telpon Lainnya</label>
                     <p id="notif_no_lainnya" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
                     <input type="number" style="border-radius: 6px ; background-color: #FFFFFF;" name="no_telpon_lainnya" id="no_telpon_lainnya" placeholder="Nomor Yang Dapat Dihubungi">
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Jam<span class="w3l-star"> * </span></label>
-                    <input type="time" style="border-radius: 6px ;" name="jam" id="jam" placeholder="Jam" required="">
+                    <input type="time" style="border-radius: 6px ; background-color: #FFFFFF;" name="jam" id="jam" placeholder="Jam" required="">
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Tanggal<span class="w3l-star"> * </span></label>
-                    <input type="date" style="border-radius: 6px ; background-color: #FFFFFF;" name="tanggal" id="tanggal" placeholder="Tanggal" required="">
+                    <input type="date" style="border-radius: 6px ; background-color: #FFFFFF; border-bottom: 2px solid #fff;" name="tanggal" id="tanggal" placeholder="Tanggal" required="">
                 </div>
                 <div class="w3l-user">
                     <label class="head">Alamat<span class="w3l-star"> * </span></label>
@@ -69,8 +69,8 @@ require_once 'koneksi.php';
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Provinsi<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="provinsi" id="provinsi" required="">
-                        <option>- PILIH -</option>
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF; border-bottom: 2px solid #fff;" name="provinsi" id="provinsi" required>
+                        <option value="" disabled selected>- PILIH -</option>
                         <?php
                         $provinsi = mysqli_query($conn, "SELECT * FROM tb_teritori_tap GROUP BY provinsi");
                         while ($row = mysqli_fetch_assoc($provinsi)) {
@@ -81,8 +81,8 @@ require_once 'koneksi.php';
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Kota/Kabupaten<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="kota" id="kota" required="">
-                        <option>- PILIH -</option>
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF; border-bottom: 2px solid #fff;" name="kota" id="kota" required>
+                        <option value="" disabled selected>- PILIH -</option>
 
                         <?php
                         // $kota = mysqli_query($conn, "SELECT * FROM tb_teritori_tap GROUP BY kabupaten");
@@ -94,15 +94,15 @@ require_once 'koneksi.php';
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Kecamatan<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="kecamatan" id="kecamatan" required>
-                        <option>- PILIH -</option>
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF; border-bottom: 2px solid #fff;" name="kecamatan" id="kecamatan" required>
+                        <option value="" disabled selected>- PILIH -</option>
 
                     </select>
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Kelurahan<span class="w3l-star"> * </span></label>
-                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF;" name="kelurahan" id="kelurahan" required>
-                        <option>- PILIH -</option>
+                    <select class="form-control" style="border-radius: 6px ; background-color: #FFFFFF; border-bottom: 2px solid #fff;" name="kelurahan" id="kelurahan" required>
+                        <option value="" disabled selected>- PILIH -</option>
 
                     </select>
                 </div>
@@ -161,15 +161,34 @@ require_once 'koneksi.php';
         // $(document).ready(function() {
         $("#form_pengajuan").submit(function(e) {
             e.preventDefault();
-            $.ajax({
-                url: 'submit_pengajuan.php',
-                type: 'post',
-                data: $(this).serialize(),
-                success: function(data) {
-                    document.getElementById("form_pengajuan").reset();
-                    $('#status').html(data);
+
+            var continer_no_3g = document.getElementById("continer_no_3g");
+            var nomor3g = document.getElementById("no_telpon_3g");
+            var nomor3g_val = document.getElementById("no_telpon_3g").value;
+
+            if (nomor3g_val.length < 9) {
+                nomor3g.focus();
+                continer_no_3g.scrollIntoView();
+            } else {
+                var continer_no_lainnya = document.getElementById("continer_no_lainnya");
+                var nomor_lainnya = document.getElementById("no_telpon_lainnya");
+                var nomor_lainnya_val = document.getElementById("no_telpon_lainnya").value;
+                if (nomor_lainnya_val.length >= 1 && nomor_lainnya_val.length < 9) {
+                    nomor_lainnya.focus();
+                    continer_no_lainnya.scrollIntoView();
+                } else {
+                    $.ajax({
+                        url: 'submit_pengajuan.php',
+                        type: 'post',
+                        data: $(this).serialize(),
+                        success: function(data) {
+                            document.getElementById("form_pengajuan").reset();
+                            $('#status').html(data);
+                        }
+                    });
                 }
-            });
+            }
+
         });
         // })
     </script>
@@ -190,8 +209,10 @@ require_once 'koneksi.php';
             var nomorlainnya = $(this).val();
 
             var notif_no_lainnya = document.getElementById("notif_no_lainnya");
-            if (nomorlainnya.length < 9) {
+            if (nomorlainnya.length >= 1 && nomorlainnya.length < 9) {
                 notif_no_lainnya.style.display = "block";
+            } else if (nomorlainnya == "") {
+                notif_no_lainnya.style.display = "none";
             } else {
                 notif_no_lainnya.style.display = "none";
             }
