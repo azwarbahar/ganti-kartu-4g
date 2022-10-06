@@ -33,10 +33,11 @@ require_once 'koneksi.php';
 </head>
 
 <body>
-    <h1>Ganti Kartu Ke 4G</h1>
+    <h1>Ganti Kartu 3G Ke 4G</h1>
     <h5>Kami bantu pelanggan setia</h5>
     <h5>Telkomsel ganti kartu 3G ke 4G</h5>
     <h5>Kami Antar Ke Tempat Bapak/Ibu</h5>
+    <h5 style="font-size: 14px ; margin-top: 5px ;">Cek status kartu <span style="background-color: #000000 ; font-size: 12px; color: #FFFFFF; padding-top: 6px; padding-bottom: 4px; padding-left: 8px; padding-right: 8px; border-radius: 10px;">*888*47#</span></h5>
     <br>
     <div class="w3l-main">
         <div class="w3l-from" style="border-radius: 8px ;">
@@ -46,12 +47,12 @@ require_once 'koneksi.php';
                     <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" required="">
                 </div>
                 <div class="w3l-user" id="continer_no_3g">
-                    <label class="head">Nomor Telpon<span class="w3l-star"> * </span></label>
+                    <label class="head">Nomor HP<span class="w3l-star"> * </span>(Format 08..)</label>
                     <p id="notif_no_3g" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
                     <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" minlength="9" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="">
                 </div>
                 <div class="w3l-user" id="continer_no_lainnya">
-                    <label class="head">Nomor Telpon Lainnya</label>
+                    <label class="head">Nomor HP Lainnya (Format 08..)</label>
                     <p id="notif_no_lainnya" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
                     <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="no_telpon_lainnya" id="no_telpon_lainnya" placeholder="Nomor Yang Dapat Dihubungi">
                 </div>
@@ -64,8 +65,8 @@ require_once 'koneksi.php';
                     <input type="date" style="border-radius: 6px ; background-color: #FFFFFF; border-bottom: 2px solid #fff;" name="tanggal" id="tanggal" placeholder="Tanggal" required="">
                 </div>
                 <div class="w3l-user">
-                    <label class="head">Alamat<span class="w3l-star"> * </span></label>
-                    <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="alamat" id="alamat" placeholder="Alamat Lengkap" required="">
+                    <label class="head">Alamat Lengkap Pengantaran Kartu<span class="w3l-star"> * </span></label>
+                    <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="alamat" id="alamat" placeholder="Jalan/Gedung/Komplek" required="">
                 </div>
                 <div class="kota" style="margin: 0px auto 10px;">
                     <label class="head">Provinsi<span class="w3l-star"> * </span></label>
