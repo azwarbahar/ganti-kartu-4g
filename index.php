@@ -37,8 +37,7 @@ require_once 'koneksi.php';
     <h5>Kami bantu pelanggan setia</h5>
     <h5>Telkomsel ganti kartu 3G ke 4G</h5>
     <h5>Kami Antar Ke Tempat Bapak/Ibu</h5>
-    <h5 style="font-size: 14px ; margin-top: 5px ;">Cek status kartu <span style="background-color: #000000 ; font-size: 12px; color: #FFFFFF; padding-top: 6px; padding-bottom: 4px; padding-left: 8px; padding-right: 8px; border-radius: 10px;">*888*47#</span></h5>
-    <br>
+    <h5 style="font-size: 14px; font-weight: bold; margin-top: 5px; margin-bottom: 5px;">Cek status kartu <span style="background-color: #000000; font-size: 12px; color: #FFFFFF; padding-top: 6px; padding-bottom: 4px; padding-left: 8px; padding-right: 8px; border-radius: 20px;">*888*47#</span></h5>
     <div class="w3l-main">
         <div class="w3l-from" style="border-radius: 8px ;">
             <form action="#" method="POST" name="form_pengajuan" id="form_pengajuan">
@@ -49,12 +48,12 @@ require_once 'koneksi.php';
                 <div class="w3l-user" id="continer_no_3g">
                     <label class="head">Nomor HP<span class="w3l-star"> * </span>(Format 08..)</label>
                     <p id="notif_no_3g" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
-                    <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" minlength="9" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="">
+                    <input type="text" minlength="9" maxlength="12" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1'); if(this.value.length < 9){this.setCustomValidity('Kurang dari 9 angka')} else {this.setCustomValidity('')};" style="border-radius: 6px ; background-color: #FFFFFF;" onKeyPress="if(this.value.length==12) return false;" name="no_telpon_3g" id="no_telpon_3g" placeholder="Nomor Yang Ingin Diganti Ke 4G" required="">
                 </div>
                 <div class="w3l-user" id="continer_no_lainnya">
                     <label class="head">Nomor HP Lainnya (Format 08..)</label>
                     <p id="notif_no_lainnya" hidden style="color: #000000 ;">Silahkan Isi 9-12 angka</p>
-                    <input type="text" style="border-radius: 6px ; background-color: #FFFFFF;" name="no_telpon_lainnya" id="no_telpon_lainnya" placeholder="Nomor Yang Dapat Dihubungi">
+                    <input type="text" minlength="9" maxlength="12" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1'); if(this.value.length  >= 1 && this.value.length < 9){this.setCustomValidity('Kurang dari 9 angka')} else if(this.value.length == 0 || this.value == ''){this.setCustomValidity('')} else {this.setCustomValidity('')};" style="border-radius: 6px ; background-color: #FFFFFF;" onKeyPress="if(this.value.length==12) return false;" name="no_telpon_lainnya" id="no_telpon_lainnya" placeholder="Nomor Yang Dapat Dihubungi">
                 </div>
                 <div class="w3l-mail">
                     <label class="head">Jam<span class="w3l-star"> * </span></label>
@@ -115,7 +114,7 @@ require_once 'koneksi.php';
             <div id="status"></div>
         </div>
     </div>
-    <footer>&copy; 2022 Ganti Kartu 4G | <a href="https://www.telkomsel.com/"> Telkomsel</a>
+    <footer>&copy; 2022 <a href="https://kinarya-solusi.com/">PT. Kinarya Selaras Solusi</a> | Gowa
     </footer>
     <!-- Default-JavaScript -->
     <script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
@@ -155,17 +154,20 @@ require_once 'koneksi.php';
     <script type="text/javascript">
         // $(document).ready(function() {
         $("#form_pengajuan").submit(function(e) {
+            // nomor_lainnya.setCustomValidity('');
             e.preventDefault();
             var continer_no_3g = document.getElementById("continer_no_3g");
             var nomor3g = document.getElementById("no_telpon_3g");
             var nomor3g_val = document.getElementById("no_telpon_3g").value;
             if (nomor3g_val.length < 9) {
                 nomor3g.focus();
+                // nomor3g.setCustomValidity("Pesan ini");
                 continer_no_3g.scrollIntoView({
                     behavior: 'smooth',
                     block: 'center'
                 });
             } else {
+                // nomor3g.setCustomValidity("");
                 var continer_no_lainnya = document.getElementById("continer_no_lainnya");
                 var nomor_lainnya = document.getElementById("no_telpon_lainnya");
                 var nomor_lainnya_val = document.getElementById("no_telpon_lainnya").value;
@@ -176,6 +178,7 @@ require_once 'koneksi.php';
                         block: 'center'
                     });
                 } else {
+                    nomor_lainnya.setCustomValidity('');
                     $.ajax({
                         url: 'submit_pengajuan.php',
                         type: 'post',
